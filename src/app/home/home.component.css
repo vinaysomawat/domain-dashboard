@@ -92,6 +92,19 @@
 .search-bar {
     margin-top: 20px;
     text-align: left;
+    margin-bottom: 35px;
+}
+.number-input {
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 5%;
+    background-color: #e7eef7;
+    border-radius: 5px;
+    border-width: 1px;
+    color: blue;
+}
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
 }
 .search-bar .search-box {
     width: 250px;
@@ -104,6 +117,7 @@
 }
 .search-icon {
     margin-right: 5px;
+    margin-left: 20px;
 }
 .primary {
     background-color: #d6ddf9;

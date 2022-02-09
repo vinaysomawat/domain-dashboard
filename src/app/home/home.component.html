@@ -8,6 +8,9 @@
     </span>
   </div>
   <div class="search-bar">
+    <span>Show</span>
+    <input #entries type="number" class="number-input" value="10" (input)="changeEntries(entries.value)">
+    <span>Entries</span>
     <i class="fa fa-search search-icon"></i>
     <input #filterInput type="text" class="search-box" results="0"
         (input)="globalFilterHandler(filterInput.value)"

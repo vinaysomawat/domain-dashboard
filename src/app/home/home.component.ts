@@ -49,8 +49,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.fetchDomains();
 
-    this.service.refreshDomain.subscribe((data: domain) => {
-      this.domains.push(data);
+    this.service.refreshDomain.subscribe((data) => {
+      this.fetchDomains();
     });
   }
 
@@ -106,5 +106,9 @@ export class HomeComponent implements OnInit {
 
   addNewSite() {
     this.service.addNewSite(true);
+  }
+
+  changeEntries(value) {
+    console.log(value);
   }
 }

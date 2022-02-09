@@ -10,7 +10,7 @@ import { domain } from './home/home.component';
 export class DataService {
   addNewSitePopup: Subject<boolean> = new Subject<boolean>();
   messageService: Subject<Toast> = new Subject<Toast>();
-  refreshDomain: Subject<domain> = new Subject<domain>();
+  refreshDomain: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }
   
@@ -27,8 +27,7 @@ export class DataService {
   }
   
   refreshDomains(newDomain: domain) {
-    this.refreshDomain.next(newDomain);
-    console.log('post method', newDomain);
+    this.refreshDomain.next(true);
     return this.http.post('http://localhost:3000/domains', newDomain);
   }
 }

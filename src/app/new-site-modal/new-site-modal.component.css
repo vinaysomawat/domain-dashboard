@@ -16,7 +16,7 @@
     left: 30.5%;
     min-height: 410px;
     min-width: 667px;
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 45px;
 }
 .add-new-site-container .heading {
@@ -35,23 +35,36 @@
 .add-new-site-container .form-input {
   width: 250px;
   border-radius: 5px;
+  font-weight: 400;
 }
 .add-new-site-container .button-div {
   display: flex;
   justify-content: center;
   margin-top: 5%;
+  float: right;
 }
 .add-new-site-container .button-div .btn-submit {
   background-color: #5b7cfd;
-  border: 1px solid #5b7cfd;
+  border-radius: 5px;
+  width: 150px;
+  height: 35px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.add-new-site-container .button-div .btn-cancel {
+  background-color: white;
+  border-width: 1px;
   border-radius: 5px;
   /* size: 27px;
     */
   width: 150px;
   height: 35px;
   font-size: 15px;
-  color: white;
+  color: black;
   cursor: pointer;
+  margin-right: 5px;
 }
 .add-new-site-container .button-div .btn-submit:hover {
   background-color: #3e64fc;
@@ -70,4 +83,10 @@
 }
 .head {
     text-align: center;
+}
+.asterisk {
+  color: red;
+  font-size: 8px;
+  position: absolute;
+  padding-top: 4px;
 }

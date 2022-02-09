@@ -7,7 +7,7 @@
         "monthlyVisitor": "10",
         "domainTag": "Primary",
         "status": "Active",
-        "subDomain": [
+        "subdomain": [
             {
                 "id": "12",
                 "domain": "xyz1.com",
@@ -36,7 +36,7 @@
         "monthlyVisitor": "100",
         "domainTag": "Primary",
         "status": "Active",
-        "subDomain": []
+        "subdomain": []
     },
     {
         "id": "4",
@@ -46,6 +46,6 @@
         "monthlyVisitor": "100",
         "domainTag": "Primary",
         "status": "Inactive",
-        "subDomain": []
+        "subdomain": []
     }
 ]

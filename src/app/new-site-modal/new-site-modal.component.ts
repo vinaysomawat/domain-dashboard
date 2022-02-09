@@ -11,13 +11,16 @@ import { Toast } from '../toaster/toaster.component';
 export class NewSiteModalComponent implements OnInit {
   isModalVisible: boolean = false;
   payload: domain = {
-    id: '999',
+    id: localStorage.getItem('id'),
     domain: '',
     storage: '',
     usedStorage: '',
-    monthlyVisitor: '',
+    montlyVisitor: '',
+    monthlyVisitorCapacity: '',
+    availableDomains: '',
+    usedDomains: '',
     status: '',
-    subDomain: [],
+    subdomain: [],
   };
   constructor(private dataService: DataService) {}
 
@@ -28,32 +31,34 @@ export class NewSiteModalComponent implements OnInit {
       }
     });
   }
-  handleOutsideEvent() {
+
+  closeModal() {
     this.isModalVisible = false;
+    this.resetPayload();
+  }
+
+  resetPayload() {
     this.payload = {
-      id: '999',
+      id: localStorage.getItem('id'),
       domain: '',
       storage: '',
       usedStorage: '',
-      monthlyVisitor: '',
+      montlyVisitor: '',
+      monthlyVisitorCapacity: '',
+      availableDomains: '',
+      usedDomains: '',
       status: '',
-      subDomain: [],
+      subdomain: [],
     };
   }
   saveDomain() {
-    this.dataService.refreshDomains(this.payload);
+    this.dataService.refreshDomains(this.payload).subscribe((res) => {
+      localStorage.setItem('id', (parseInt(localStorage.getItem('id')) + 1).toString());
+    });
     this.dataService.showMessage(
       new Toast('Success', 'Domain Added Successfully')
     );
-    this.payload = {
-      id: '999',
-      domain: '',
-      storage: '',
-      usedStorage: '',
-      monthlyVisitor: '',
-      status: '',
-      subDomain: [],
-    };
+    this.resetPayload();
     this.isModalVisible = false;
   }
 }

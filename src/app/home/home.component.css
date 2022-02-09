@@ -126,12 +126,17 @@
 .custom-w3-border {
     margin: 7px 10px 0px 0px;
     border-radius: 5px;
+    background-color: #e7eef7;
+    border: none;
 }
 .custom-w3-green {
     background-color: #33cc86;
-    height:24px;
+    height:20px;
     border-radius: 5px;
 }
 .small-bar {
     height: 15px !important;
+}
+.available-domain {
+    color: blue;
 }

@@ -22,6 +22,7 @@ export class ToasterComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataShare.messageService.subscribe((data: Toast) => {
+      console.log('toastdata', data);
       if (this.timer) {
         clearTimeout(this.timer);
         this.showMessage = false;

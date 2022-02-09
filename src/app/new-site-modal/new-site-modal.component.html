@@ -1,16 +1,14 @@
 <div class="backdrop" *ngIf="isModalVisible"></div>
 <div #addNewSiteContainer class="add-new-site-container" *ngIf="isModalVisible">
-  <div class="head">
-    <span class="heading">Add New Site</span>
-    <i class="fa fa-close close-icon" (click)="handleOutsideEvent()"></i>
-  </div>
+    <span class="heading">Add Domain Details</span>
+    <i class="fa fa-close close-icon" (click)="closeModal()"></i>
   <hr />
   <form
     (ngSubmit)="!newDomainForm.invalid && saveDomain()"
     #newDomainForm="ngForm"
   >
     <fieldset class="form-item">
-      <label class="form-label">Domain Name</label>
+      <label class="form-label">Domain Name<i class="fa fa-asterisk asterisk"></i></label>
       <input
         class="form-input"
         placeholder="Enter Domain Name"
@@ -22,7 +20,7 @@
       />
     </fieldset>
     <fieldset class="form-item">
-      <label class="form-label">Storage</label>
+      <label class="form-label">Storage<i class="fa fa-asterisk asterisk"></i></label>
       <input
         class="form-input"
         placeholder="Enter Storage"
@@ -34,7 +32,7 @@
       />
     </fieldset>
     <fieldset class="form-item">
-      <label class="form-label">Used Storage</label>
+      <label class="form-label">Used Storage<i class="fa fa-asterisk asterisk"></i></label>
       <input
         class="form-input"
         placeholder="Enter Used Storage"
@@ -46,22 +44,64 @@
       />
     </fieldset>
     <fieldset class="form-item">
-      <label class="form-label">Monthly Visitors</label>
+      <label class="form-label">Monthly Visitors<i class="fa fa-asterisk asterisk"></i></label>
       <input
         class="form-input"
         placeholder="Enter Monthly Visitors"
-        name="monthlyVisitors"
+        name="montlyVisitor"
         [ngClass]="{
-          invalid: monthlyVisitors.touched && monthlyVisitors.invalid
+          invalid: montlyVisitor.touched && montlyVisitor.invalid
         }"
-        #monthlyVisitors="ngModel"
-        [(ngModel)]="payload.monthlyVisitor"
+        #montlyVisitor="ngModel"
+        [(ngModel)]="payload.montlyVisitor"
         required
       />
     </fieldset>
     <fieldset class="form-item">
-      <label class="form-label">Status</label>
+      <label class="form-label">Monthly Visitors Capacity<i class="fa fa-asterisk asterisk"></i></label>
       <input
+        class="form-input"
+        placeholder="Enter Monthly Visitors Capacity"
+        name="monthlyVisitorCapacity"
+        [ngClass]="{
+          invalid: monthlyVisitorCapacity.touched && monthlyVisitorCapacity.invalid
+        }"
+        #monthlyVisitorCapacity="ngModel"
+        [(ngModel)]="payload.monthlyVisitorCapacity"
+        required
+      />
+    </fieldset>
+    <fieldset class="form-item">
+      <label class="form-label">Available Domains<i class="fa fa-asterisk asterisk"></i></label>
+      <input
+        class="form-input"
+        placeholder="Enter Available Domains"
+        name="availableDomains"
+        [ngClass]="{
+          invalid: availableDomains.touched && availableDomains.invalid
+        }"
+        #availableDomains="ngModel"
+        [(ngModel)]="payload.availableDomains"
+        required
+      />
+    </fieldset>
+    <fieldset class="form-item">
+      <label class="form-label">Used Domains<i class="fa fa-asterisk asterisk"></i></label>
+      <input
+        class="form-input"
+        placeholder="Enter Used Domains"
+        name="usedDomains"
+        [ngClass]="{
+          invalid: usedDomains.touched && usedDomains.invalid
+        }"
+        #usedDomains="ngModel"
+        [(ngModel)]="payload.usedDomains"
+        required
+      />
+    </fieldset>
+    <fieldset class="form-item">
+      <label class="form-label">Status<i class="fa fa-asterisk asterisk"></i></label>
+      <!-- <input
         class="form-input"
         placeholder="Enter Status"
         name="status"
@@ -69,9 +109,20 @@
         [ngClass]="{ invalid: status.touched && status.invalid }"
         #status="ngModel"
         required
-      />
+      /> -->
+      <input type="radio" id="html" name="fav_language" value="Active" [(ngModel)]="payload.status">&nbsp;
+      <label for="html">Active</label>&nbsp;
+      <input type="radio" id="css" name="fav_language" value="Inactive" [(ngModel)]="payload.status">&nbsp;
+      <label for="css">Inactive</label>&nbsp;
     </fieldset>
     <div class="button-div">
+      <button
+        type="button"
+        class="btn-cancel"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
       <button
         type="submit"
         class="btn-submit"

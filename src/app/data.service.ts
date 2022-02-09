@@ -15,7 +15,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
   
   getDomains(): Observable<any> {
-    return this.http.get(window.location + '/assets/mockJson/getDomains.json');
+    return this.http.get('http://localhost:3000/domains');
   }
 
   addNewSite(showPopUp: boolean) {
@@ -28,5 +28,7 @@ export class DataService {
   
   refreshDomains(newDomain: domain) {
     this.refreshDomain.next(newDomain);
+    console.log('post method', newDomain);
+    return this.http.post('http://localhost:3000/domains', newDomain);
   }
 }

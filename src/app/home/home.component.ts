@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
-import * as _ from 'lodash';
 export class domain {
   id: string;
   domain: string;
   storage: string;
   usedStorage: string;
-  monthlyVisitor: string;
+  montlyVisitor: string;
+  monthlyVisitorCapacity: string;
+  availableDomains: string;
+  usedDomains: string;
   status: string;
-  subDomain: any[];
+  subdomain: any[];
 }
 @Component({
   selector: 'home',
@@ -41,7 +43,6 @@ export class HomeComponent implements OnInit {
     },
   ];
   domains: domain[];
-  domainCopy: domain[];
   searchTimeOut: any = null;
   constructor(private service: DataService) {}
 
@@ -50,10 +51,6 @@ export class HomeComponent implements OnInit {
 
     this.service.refreshDomain.subscribe((data: domain) => {
       this.domains.push(data);
-      this.domains = this.domains.map((x) => {
-        return { ...x, isOpen: false };
-      });
-      this.domainCopy = _.cloneDeep(this.domains);
     });
   }
 
@@ -61,11 +58,8 @@ export class HomeComponent implements OnInit {
     this.service.getDomains().subscribe((data: domain[]) => {
       this.domains = data;
       console.table(this.domains);
-      this.domains = this.domains.map((x) => {
-        return { ...x, isOpen: false };
-      });
-      console.table(this.domains);
-      this.domainCopy = _.cloneDeep(this.domains);
+      // maintaining a new id in localstorage for every new element added to db
+      localStorage.setItem('id', (this.domains.length + 1).toString());
     });
   }
 
@@ -77,7 +71,7 @@ export class HomeComponent implements OnInit {
   }
 
   expandCollapse(data) {
-    if (data.subDomain.length > 0) {
+    if (data.subdomain.length > 0) {
       data.isOpen = !data.isOpen;
     }
   }
@@ -95,21 +89,18 @@ export class HomeComponent implements OnInit {
         return;
       }
       this.filterInput.value = event;
-      if (event == null || event == '') {
-        this.domains = [...this.domainCopy];
-      } else {
-        let filteredData = this.domainCopy.filter((data) => {
-          let output = false;
-          for (let obj of Object.entries(data)) {
-            if (String(obj[1]).toLowerCase().includes(event.toLowerCase())) {
-              output = true;
-              break;
-            }
+      
+      let filteredData = this.domains.filter((data) => {
+        let output = false;
+        for (let obj of Object.entries(data)) {
+          if (String(obj[1]).toLowerCase().includes(event.toLowerCase())) {
+            output = true;
+            break;
           }
-          return output;
-        });
-        this.domains = [...filteredData];
-      }
+        }
+        return output;
+      });
+      this.domains = [...filteredData];
     }, waitTimeInMillis);
   }
 

@@ -1,0 +1,16 @@
+<div class="nav-bar">
+    <div class="user-info">
+      <img class="user-picture" src="{{ user.imgLink }}">
+      <p class="user-name">{{ user.name }}</p>
+      <p class="user-email">{{ user.email }}</p>
+    </div>
+    <div class="nav-bar-content">
+      <table>
+        <tr [ngClass]="{'enabled': item.isActive, 'disabled': !item.isActive}"
+          *ngFor="let item of sidebarData">
+          <i class="{{item.icon}}"></i>
+          {{ item.title }}
+        </tr>
+      </table>
+    </div>
+  </div>

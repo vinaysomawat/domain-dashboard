@@ -1,0 +1,9 @@
+.display{
+    width:80%;
+    height: 100%;
+    float:right;
+    background-color: #E7EEF7;
+}
+.container{
+    height: 100vh;
+}
